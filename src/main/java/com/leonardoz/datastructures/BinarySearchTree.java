@@ -62,18 +62,18 @@ public class BinarySearchTree<E extends Comparable<E>> {
 			return null;
 		}
 
-		return buscarRecursivo(value, root);
+		return recuriveSearch(value, root);
 	}
 
-	private E buscarRecursivo(E value, Vertex<E> vertex) {
+	private E recuriveSearch(E value, Vertex<E> vertex) {
 		if (vertex == null) {
 			return null;
 		}
 		int comparado = value.compareTo(vertex.value);
 		if (comparado == -1) {
-			return buscarRecursivo(value, vertex.left);
+			return recuriveSearch(value, vertex.left);
 		} else if (comparado == 1) {
-			return buscarRecursivo(value, vertex.right);
+			return recuriveSearch(value, vertex.right);
 		} else if (comparado == 0) {
 			return vertex.value;
 		}
@@ -84,23 +84,23 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		if (root == null) {
 			root = new Vertex<>(null, null, value);
 		} else {
-			adicionarRecursivo(value, root);
+			recursiveInsert(value, root);
 		}
 	}
 
-	private void adicionarRecursivo(E value, Vertex<E> vertex) {
+	private void recursiveInsert(E value, Vertex<E> vertex) {
 		int comparado = value.compareTo(vertex.value);
 		if (comparado == -1) {
 			// left
 			if (vertex.left != null) {
-				adicionarRecursivo(value, vertex.left);
+				recursiveInsert(value, vertex.left);
 			} else {
 				vertex.left = new Vertex<>(null, null, value);
 			}
 		} else if (comparado == 1) {
 			// right
 			if (vertex.right != null) {
-				adicionarRecursivo(value, vertex.right);
+				recursiveInsert(value, vertex.right);
 			} else {
 				vertex.right = new Vertex<>(null, null, value);
 			}
@@ -111,12 +111,12 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		if (root == null) {
 			return false;
 		} else {
-			root = removerRecursivo(value, root);
+			root = recursiveRemove(value, root);
 			return true;
 		}
 	}
 
-	private Vertex<E> removerRecursivo(E value, Vertex<E> vertex) {
+	private Vertex<E> recursiveRemove(E value, Vertex<E> vertex) {
 		if (vertex == null) {
 			return null;
 		}
@@ -124,17 +124,17 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		int comparado = value.compareTo(vertex.value);
 		if (comparado == -1) {
 			// left
-			root.left = removerRecursivo(value, vertex.left);
+			root.left = recursiveRemove(value, vertex.left);
 		} else if (comparado == 1) {
 			// right
-			root.right = removerRecursivo(value, vertex.right);
+			root.right = recursiveRemove(value, vertex.right);
 		} else {
 			// vertex tem 2 filhos
 			if (vertex.left != null && vertex.right != null) {
 				// pega o menor da árvore right
 				vertex.value = findMinor(vertex.right).value;
 				// remove o value pego da árvore right
-				vertex.right = removerRecursivo(vertex.value, vertex.right);
+				vertex.right = recursiveRemove(vertex.value, vertex.right);
 			} else {
                 vertex = ( vertex.left != null ) ? vertex.left: vertex.right;
 			}

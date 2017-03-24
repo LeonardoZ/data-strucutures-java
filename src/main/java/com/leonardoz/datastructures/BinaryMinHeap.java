@@ -83,15 +83,15 @@ public class BinaryMinHeap<T extends Comparable<T>> {
 		int smallest = pos;
 		int left = getLeft(pos);
 		if (left < heapSize) {
-			boolean leftIsLesser = elements[smallest].compareTo(elements[left]) == 1;
-			if (leftIsLesser)
+			boolean leftLessThan = elements[smallest].compareTo(elements[left]) == 1;
+			if (leftLessThan)
 				smallest = left;
 		}
 
 		int right = getRight(pos);
 		if (right < heapSize) {
-			boolean rightIsLesser = elements[smallest].compareTo(elements[right]) == 1;
-			if (rightIsLesser)
+			boolean rightLessThan = elements[smallest].compareTo(elements[right]) == 1;
+			if (rightLessThan)
 				smallest = right;
 		}
 
