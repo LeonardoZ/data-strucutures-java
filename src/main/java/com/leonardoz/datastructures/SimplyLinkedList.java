@@ -1,7 +1,8 @@
 package com.leonardoz.datastructures;
 
 public class SimplyLinkedList<E> implements LinkedList<E>  {
-
+	
+// 	class to create a node of the linked list.
 	static class Node<E> {
 		E value = null;
 		Node<E> next = null;
@@ -35,7 +36,7 @@ public class SimplyLinkedList<E> implements LinkedList<E>  {
 		size++;
 	}
 	
-	
+// 	inserting the given 'value' at the given 'position'.
 	@Override
 	public void insertAt(E value, int position) throws IllegalArgumentException {
 		if (position > size) {
@@ -62,7 +63,7 @@ public class SimplyLinkedList<E> implements LinkedList<E>  {
 		size++;
 	}
 	
-	
+// 	remove value from the given position of a linked list.
 	@Override
 	public E removeAt(int position) throws IllegalArgumentException {
 		if (position > size) {
@@ -75,7 +76,7 @@ public class SimplyLinkedList<E> implements LinkedList<E>  {
 			first = first.next;
 			return aux.value;
 		} else if (position == (size - 1)) {
-			// recupera o previous ao último
+			// recupera o previous ao Ãºltimo
 			Node<E> Node = getNode(position - 1);
 			Node.next = null;
 			Node<E> aux = last;
@@ -88,7 +89,7 @@ public class SimplyLinkedList<E> implements LinkedList<E>  {
 			return removed.value;
 		}
 	}
-	
+// 	returns the element from the given position.
 	@Override
 	public E getAt(int position) throws IllegalArgumentException {
 		if (position > size) {
@@ -96,7 +97,7 @@ public class SimplyLinkedList<E> implements LinkedList<E>  {
 		}
 		return getNode(position).value;
 	}
-	
+// 	returns the node of the given position
 	private Node<E> getNode(int position) {
 		if (position == 0) {
 			return first;
@@ -112,17 +113,17 @@ public class SimplyLinkedList<E> implements LinkedList<E>  {
 			return aux;
 		}
 	}
-
+// returns the first element of the linked list.
 	@Override
 	public E getFirst() {
 		return first.value;
 	}
-	
+// 	returns the last elemetn of the linked list.
 	@Override
 	public E getLast() {
 		return last.value;
 	}
-	
+// returns the total number of nodes or length of the linked list.
 	@Override
 	public int getSize() {
 		return size;
